@@ -89,17 +89,17 @@ h5 {
   border-color: #ffffff; }
 
 .btn-fill {
-  color: #000000;
+  color: #F5E6D0;
   border: solid 2px #000000;
   border-radius: 40px;
   display: inline-block;
   text-transform: uppercase;
-  background-color: #c59961; }
+  background-color: #0c0906; }
 
 .btn-fill:hover, .btn-fill:focus {
-  color: #000000;
-  background-color: #c59961;
-  border-color: #c59961; }
+  color: #eee2e2;
+  background-color: #0c0906;
+  border-color: #ffffff; }
 
 .btn-small {  
   padding: 8px 40px; 
@@ -112,7 +112,7 @@ h5 {
   margin-right: 20px; }
 
 section.intro {
-  background-color: #9c6d3a; }
+  background-color: #14141400; }
 
 section.features, section.blog-intro, section.blog {
   background: #f3c586; }
@@ -131,13 +131,6 @@ section.features, section.blog-intro, section.blog {
     #e2b16f 82%,
     #f3c586 100%
   );
-}
-.trans2 {
-  position: relative;
-  z-index: 50;
-  height: 120px;
-  width: 100%;
-  pointer-events: none;
 }
 
 .trans1 {
@@ -627,7 +620,8 @@ Features-stack
     height: 1340px;
     padding-left: 800px;
     background: url("../assets/img/ipad-device.png") no-repeat center center;
-    z-index: 1; }
+    z-index: 1;
+    padding-top: 100px;}
   .features .iphone-wrap {
     width: 445px;
     height: 620px;
@@ -1097,7 +1091,6 @@ Sign up form
   color: rgba(92, 61, 46, .55);
 }
 
-/* Ícones */
 .sign-up .form-input-group i {
   position: absolute;
   top: 50%;
@@ -1105,7 +1098,7 @@ Sign up form
   z-index: 1;
   transform: translateY(-50%);
   font-size: 14px;
-  color: #c9956c;
+  color: #000000;
 }
 
 .sign-up .form-input-group i.fa-lock {
