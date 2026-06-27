@@ -56,8 +56,8 @@ h5 {
   border-color: #000000; }
 
 .btn-white:hover, .btn-white:focus {
-  color: #c59961;
-  border-color: #c59961; }
+  color: #ffffff;
+  border-color: #ffffff; }
 
 .btn-fill {
   color: #000000;
@@ -81,11 +81,11 @@ h5 {
 .btn-margin-right {
   margin-right: 20px; }
 
-section.intro, section.features-extra, section.sign-up {
-  background: #f0ddc4; }
+section.intro {
+  background: linear-gradient(to bottom, #e7a44655, #f3c586); }
 
 section.features, section.blog-intro, section.blog {
-  background: #ffefdc; }
+  background: #f3c586; }
 
 /* ==========================================================================
 Global Styles
@@ -413,15 +413,33 @@ header .logo img {
   height: auto;
 }
   header ul.primary-nav {
-    margin: 0 0 0 20px;
-    padding: 0; }
+    margin: 0px 0px 10px 0px;
+    padding: 0;
+   }
     header ul.primary-nav li {
-      display: inline; }
+    margin: 0 10px;
+    background: #efdec812;
+    backdrop-filter: blur(16px);         
+    -webkit-backdrop-filter: blur(16px); 
+    border: 2px solid rgba(0, 0, 0, 0.6); 
+    border-radius: 32px;
+    position: relative;                 
+    padding: 10px;                         
+    box-shadow: 0 20px 50px rgba(44, 24, 16, 0.08);
+    z-index: 10;    
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s, background-color 0.3s;       
+    display: inline-block;
+    }
+    header ul.primary-nav li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(44, 24, 16, 0.12);
+      background: #bc905718;
+      border-color: rgba(255, 255, 255, 0.6);
+}
       header ul.primary-nav li a {
-        color: #000000;
-        padding-right: 25px; }
+        color: #000000;}
         header ul.primary-nav li a:hover {
-          color: #c59961; }
+          color: #ffffff; }
       header ul.primary-nav li:last-child a {
         padding-right: 0px; }
   header ul.member-actions li {
@@ -429,7 +447,7 @@ header .logo img {
     header ul.member-actions li a {
       color: #000000; }
       header ul.member-actions li a:hover {
-        color: #c59961; }
+        color: #ffffff; }
   header .header-nav {
     display: inline-block; }
   header .member-actions {
@@ -483,8 +501,8 @@ Features-stack
   position: relative; 
   padding-right:1px;}
 
-.features .feature-list {
-  background: #c59a6112;
+.features .feature-list{
+  background: #efdec812;
   backdrop-filter: blur(16px);         
   -webkit-backdrop-filter: blur(16px); 
   border: 1px solid rgba(255, 255, 255, 0.6); 

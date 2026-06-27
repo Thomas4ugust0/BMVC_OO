@@ -49,36 +49,49 @@ $(document).ready(function() {
 
 	/***************** Header BG Scroll ******************/
 
-	$(function() {
-		$(window).scroll(function() {
-			var scroll = $(window).scrollTop();
+    $(function() {
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
 
-			if (scroll >= 20) {
-				$('section.navigation').addClass('fixed');
-				$('header').css({
-					"border-bottom": "none",
-					"padding": "35px 0"
-				});
-				$('header .member-actions').css({
-					"top": "26px",
-				});
-				$('header .navicon').css({
-					"top": "34px",
-				});
-			} else {
-				$('section.navigation').removeClass('fixed');
-				$('header').css({
-					"padding": "50px 0"
-				});
-				$('header .member-actions').css({
-					"top": "41px",
-				});
-				$('header .navicon').css({
-					"top": "48px",
-				});
-			}
-		});
-	});
+            if (scroll >= 20) {
+                $('section.navigation').addClass('fixed');
+                $('header').css({
+                    "border-bottom": "none",
+                    "padding": "5px 0"
+                });
+                
+                $('header .member-actions').css({
+                    "top": "10px",
+                });
+                
+                $('header ul.primary-nav').css({
+                    "margin-top": "0px",
+                    "transition": "margin-top 300ms ease-in-out"
+                });
+
+                $('header .navicon').css({
+                    "top": "34px",
+                });
+            } else {
+                $('section.navigation').removeClass('fixed');
+                $('header').css({
+                    "padding": "20px 0"
+                });
+                
+                $('header .member-actions').css({
+                    "top": "41px",
+                });
+                
+                $('header ul.primary-nav').css({
+                    "margin-top": "15px" 
+                });
+
+                $('header .navicon').css({
+                    "top": "48px",
+                });
+            }
+        });
+    });
 	/***************** Smooth Scrolling ******************/
 
 	$(function() {
