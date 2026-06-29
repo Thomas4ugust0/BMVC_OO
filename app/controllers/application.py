@@ -1,7 +1,7 @@
 import logging
 from typing import Optional, Callable, Dict, Any
 from bottle import template, request
-from app.models.user_account import Usuario
+from app.models.user_account import Usuario, Pet
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -48,6 +48,13 @@ class Application:
 
     def portal(self) -> str:
         return template('app/views/html/portal.tpl')
+    
+    def cliente(self) -> str:
+        usuario_logado = self.get_current_user()
+        
+        if not usuario_logado:
+            return self.index()
 
-    def cliente(self, parameter: Optional[str] = None) -> str:
-        return template('app/views/html/cliente.tpl', username=parameter)
+        meus_pets = Pet.select().where(Pet.dono == usuario_logado)
+        
+        return template('app/views/html/cliente.tpl', usuario=usuario_logado, pets=meus_pets)

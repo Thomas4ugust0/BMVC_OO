@@ -1,7 +1,5 @@
 from peewee import *
 from werkzeug.security import generate_password_hash, check_password_hash
-
-# Cria o arquivo do banco de dados na raiz do projeto
 db = SqliteDatabase('petway.db')
 
 class BaseModel(Model):
@@ -10,13 +8,18 @@ class BaseModel(Model):
 
 class Usuario(BaseModel):
     nome = CharField()
-    email = CharField(unique=True) # apenas um email por usuário
+    email = CharField(unique=True) 
     senha_hash = CharField()
-    role = CharField() # 'walker' ou 'owner'
+    role = CharField() #'walker' ou 'owner'
 
     def checar_senha(self, senha_digitada):
         return check_password_hash(self.senha_hash, senha_digitada)
+class Pet(BaseModel):
+    nome = CharField()
+    raca = CharField()
+    sexo = CharField()
+    #um pet está ligado a um dono (Usuario)
+    dono = ForeignKeyField(Usuario, backref='pets', on_delete='CASCADE')
 
-# Conecta e garante que as tabelas sejam criadas se não existirem
 db.connect()
-db.create_tables([Usuario], safe=True)
+db.create_tables([Usuario, Pet], safe=True)

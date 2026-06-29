@@ -23,9 +23,9 @@
       </nav>
       <div class="header-user">
         <div class="avatar-bubble">
-          <span class="avatar-initial">{{username[:2].upper()}}</span>
+          <span class="avatar-initial">{{usuario.nome[:2].upper()}}</span>
         </div>
-        <span class="user-name">{{username}}</span>
+        <span class="user-name">{{usuario.nome}}</span>
         <span class="user-badge">Tutor</span>
       </div>
       <a href="/logout" class="nav-link">Sair <i class="ph ph-sign-out"></i></a>
@@ -43,31 +43,49 @@
   </section>
 
   <!-- ========== PROGRESS BAR ========== -->
-  <div class="progress-strip">
-    <div class="container">
-      <div class="progress-steps">
-        <div class="pstep active" data-step="1">
-          <div class="pstep-num">1</div>
-          <span>Passeador</span>
+<div class="progress-strip">
+  <div class="container">
+    <div class="progress-steps">
+      <div class="pstep active" data-step="1">
+        <div class="pstep-num">
+          <span>1</span>
+          <i class="ph-bold ph-check-fat" style="color:#0c0906"></i>
         </div>
-        <div class="pstep-line"></div>
-        <div class="pstep" data-step="2">
-          <div class="pstep-num">2</div>
-          <span>Plano</span>
+        <span>Passeador</span>
+      </div>
+      
+      <div class="pstep-line"></div>
+      
+      <div class="pstep" data-step="2">
+        <div class="pstep-num">
+          <span>2</span>
+          <i class="ph-bold ph-check-fat" style="color:#0c0906"></i>
         </div>
-        <div class="pstep-line"></div>
-        <div class="pstep" data-step="3">
-          <div class="pstep-num">3</div>
-          <span>Agendamento</span>
+        <span>Plano</span>
+      </div>
+      
+      <div class="pstep-line"></div>
+      
+      <div class="pstep" data-step="3">
+        <div class="pstep-num">
+          <span>3</span>
+          <i class="ph-bold ph-check-fat" style="color:#0c0906"></i>
         </div>
-        <div class="pstep-line"></div>
-        <div class="pstep" data-step="4">
-          <div class="pstep-num">4</div>
-          <span>Confirmação</span>
+        <span>Agendamento</span>
+      </div>
+      
+      <div class="pstep-line"></div>
+      
+      <div class="pstep" data-step="4">
+        <div class="pstep-num">
+          <span>4</span>
+          <i class="ph-bold ph-check-fat" style="color:#0c0906"></i>
         </div>
+        <span>Confirmação</span>
       </div>
     </div>
   </div>
+</div>
 
   <!-- ========== MAIN LAYOUT ========== -->
   <main class="main-layout container">
@@ -347,14 +365,21 @@
 
         <div class="scheduling-grid">
           <div class="schedule-block">
-            <h4><i class="ph-bold ph-paw-print"></i> Seu Pet</h4>
+            <h4><i class="ph-bold ph-paw-print"></i> Seus Pets</h4>
             <div class="pet-selector">
-              <input type="radio" name="pet" id="pet1" value="thor" class="sr-only" />
-              <label class="pet-chip" for="pet1"><i class="ph-bold ph-dog"></i> Thor</label>
-              <input type="radio" name="pet" id="pet2" value="mel" class="sr-only" />
-              <label class="pet-chip" for="pet2"><i class="ph-bold ph-dog"></i> Mel</label>
-              <input type="radio" name="pet" id="pet3" value="add" class="sr-only" />
-              <label class="pet-chip pet-add" for="pet3">+ Adicionar</label>
+              % if pets:
+                  % for pet in pets:
+                  <input type="radio" name="pet" id="pet_radio_{{pet.id}}" value="{{pet.id}}" class="sr-only" />
+                  
+                  <label class="pet-chip" for="pet_radio_{{pet.id}}">
+                      <i class="ph-bold ph-dog"></i> {{pet.nome}}
+                  </label>
+                  % end
+              % end
+             <a href="#cadastrar-pet" class="pet-chip pet-add" style="text-decoration: none; display: inline-block;" onclick="document.getElementById('form-novo-pet').style.display='block'">
+                  <i class="ph ph-pencil-line"></i> Alterar
+              </a>
+              
             </div>
           </div>
 
@@ -380,88 +405,16 @@
             <textarea class="textarea-elegant" rows="3" placeholder="Informe características especiais do seu pet: reatividade, medos, alimentação durante o passeio..."></textarea>
           </div>
         </div>
-
-        <!-- Checkout Summary -->
-        <div class="checkout-box">
-          <div class="checkout-header">
-            <span><i class="ph ph-shopping-bag-open"></i></span>
-            <h3>Resumo da Assinatura</h3>
-          </div>
-          <div class="checkout-rows">
-            <div class="checkout-row">
-              <span>Passeador</span>
-              <strong id="sum-walker">—</strong>
-            </div>
-            <div class="checkout-row">
-              <span>Plano</span>
-              <strong id="sum-plan">—</strong>
-            </div>
-            <div class="checkout-row">
-              <span>Horário</span>
-              <strong id="sum-time">—</strong>
-            </div>
-            <div class="checkout-row checkout-total">
-              <span>Total mensal</span>
-              <strong id="sum-price">R$ —</strong>
-            </div>
-          </div>
-          <div class="checkout-note">
-            <span><i class="ph-bold ph-lock-simple"></i></span>
-            <p>Ao confirmar, o valor do plano será debitado mensalmente com renovação automática. O sistema de agendamento garantirá a disponibilidade do seu passeador oficial para os dias selecionados, sem que você precise interagir semanalmente com a plataforma.</p>
-          </div>
-          <button class="btn-confirm" onclick="confirmSubscription()">
-            <span>CONFIRMAR ASSINATURA</span>
-            <span class="btn-arrow">→</span>
-          </button>
-          <p class="checkout-cancel">Cancele a qualquer momento · Sem multa de fidelidade · Renovação automática</p>
-        </div>
-      </section>
+      
 
       <!-- ===== STEP 4: POST-SUBSCRIPTION FEATURES ===== -->
       <section class="step-section" id="step-4">
-        <div class="step-header">
-          <div class="step-badge">Passo 4</div>
-          <h2 class="step-title">Acompanhamento em Tempo Real</h2>
-          <p class="step-desc">Tudo que você precisa para monitorar e gerenciar a rotina do seu pet, direto na plataforma.</p>
-        </div>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feat-icon"><i class="ph-bold ph-map-pin"></i></div>
-            <h4>Rastreamento ao Vivo</h4>
-            <p>Veja onde seu pet está durante o passeio. Receba notificação quando sair e quando voltar.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feat-icon"><i class="ph-bold ph-camera"></i></div>
-            <h4>Fotos & Vídeos</h4>
-            <p>Receba registros do passeio diretamente no app. Memórias do dia a dia do seu melhor amigo.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feat-icon"><i class="ph-bold ph-notebook"></i></div>
-            <h4>Relatório de Saúde</h4>
-            <p>Distância percorrida, necessidades fisiológicas, humor e comportamento documentados.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feat-icon"><i class="ph-bold ph-star"></i></div>
-            <h4>Avalie seu Passeador</h4>
-            <p>Após cada passeio, deixe sua avaliação e ajude a comunidade Petway a crescer com qualidade.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feat-icon"><i class="ph-bold ph-calendar-blank"></i></div>
-            <h4>Agenda Automática</h4>
-            <p>Nenhuma interação necessária. O sistema gera os passeios semanalmente de forma automática.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feat-icon"><i class="ph-bold ph-chat-circle"></i></div>
-            <h4>Chat com Passeador</h4>
-            <p>Comunicação direta e segura dentro da plataforma. Sem compartilhamento de dados pessoais.</p>
-          </div>
-        </div>
 
         <!-- Activity Timeline mockup -->
         <div class="activity-section">
           <h3 class="activity-title">Histórico Recente</h3>
-          <div class="timeline">
+          <div id="cadastrar-pet"  class="timeline">
             <div class="timeline-item completed">
               <div class="tl-dot"></div>
               <div class="tl-content">
@@ -497,30 +450,48 @@
         </div>
 
         <!-- Dog Profiles -->
-        <div class="dogs-section">
+<div class="dogs-section">
           <div class="dogs-header">
             <h3>Meus Pets</h3>
-            <button class="btn-add-pet">+ Adicionar Pet</button>
+            <button class="btn-add-pet" onclick="document.getElementById('form-novo-pet').style.display='block'">+ Adicionar Pet</button>
           </div>
+
+          <div id="form-novo-pet" style="display: none; margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+              <h4>Cadastrar Novo Pet</h4>
+              <form action="/adicionar_pet" method="POST" style="display: flex; gap: 10px; align-items: center;">
+                  <input class="select-elegant" type="text" name="nome" placeholder="Nome" required style="min-width: 0px !important; width: 500px; padding: 8px 10px;">
+                  <input class="select-elegant" type="text" name="raca" placeholder="Raça (ex: Golden)" required style="padding: 8px;">
+                  <select class="select-elegant" name="sexo" required style="padding: 8px; min-width: 0px !important; width: 500px;">
+                      <option value="Macho">Macho</option>
+                      <option value="Fêmea">Fêmea</option>
+                  </select>
+                  <button class="btn-confirm" type="submit" style="width: 100px; height: 30px; font-size: 10px; color: white; border: none;">Salvar Pet</button>
+                  <button class="btn-confirm tl-desc" type="button" onclick="document.getElementById('form-novo-pet').style.display='none'" style="height: 30px; padding:10px; background: white; border: none; font-size: 10px" margin="10px">Cancelar</button>
+              </form>
+          </div>
+
           <div class="dogs-grid">
-            <div class="dog-profile-card">
-              <div class="dog-avatar"><i class="ph-fill ph-dog"></i></div>
-              <div class="dog-info">
-                <strong>Thor</strong>
-                <span>Labrador · 3 anos · Macho</span>
-                <span>Plano Alta Energia · Ativo</span>
-              </div>
-              <div class="dog-status active-status">Ativo</div>
-            </div>
-            <div class="dog-profile-card">
-              <div class="dog-avatar"><i class="ph-fill ph-dog"></i></div>
-              <div class="dog-info">
-                <strong>Mel</strong>
-                <span>Poodle · 1 ano · Fêmea</span>
-                <span>Sem plano ativo</span>
-              </div>
-              <div class="dog-status inactive-status">Sem Plano</div>
-            </div>
+            
+            % if pets:
+                % for pet in pets:
+                <div class="dog-profile-card">
+                  <div class="dog-avatar"><i class="ph-fill ph-dog"></i></div>
+                  <div class="dog-info">
+                    <strong>{{ pet.nome }}</strong>
+                    <span>{{ pet.raca }} · {{ pet.sexo }}</span>
+                  </div>
+                  
+                  <form action="/excluir_pet/{{ pet.id }}" method="POST" style="margin-left: auto;">
+                        <button class="tl-desc" type="submit" style="color: #d9534f; background: none; border: none; cursor: pointer; font-size: 12px; padding: 5px;">
+                          <i class="ph-fill ph-trash"></i> Remover
+                        </button>
+                  </form>
+                </div>
+                % end
+            % else:
+                <p style="color: #666; font-style: italic;">Nenhum pet cadastrado ainda. Adicione seu primeiro pet!</p>
+            % end
+            
           </div>
         </div>
 
@@ -566,9 +537,10 @@
     <aside class="sidebar">
       <div class="sidebar-sticky">
         <div class="sidebar-card">
+          <div class="step-badge">Passo 4</div>
           <div class="sidebar-header">
-            <h4>SUA SELEÇÃO</h4>
-            <span class="sidebar-live-dot"></span>
+            <h4><i class="ph ph-shopping-bag-open"></i> Resumo da Assinatura
+            </h4>
           </div>
 
           <div class="sidebar-section">
@@ -604,18 +576,46 @@
           </button>
         </div>
 
-        <!-- Trust block -->
-        <div class="trust-card">
-          <h4>Por que a Petway?</h4>
-          <div class="trust-item"><span><i class="ph-fill ph-paw-print"></i></span><p>Passeador fixo para criar vínculo com seu pet</p></div>
-          <div class="trust-item"><span><i class="ph-bold ph-shield-check"></i></span><p>Todos os passeadores são verificados e segurados</p></div>
-          <div class="trust-item"><span><div class="stars-group" data-rating="1"></divclass>></div></span><p>Nota média 4.9 em mais de 1.200 passeios</p></div>
-        </div>
-    </aside>
-
   </main>
   <section class="faq-section">
     <div class="container faq-inner">
+      <div class="step-header">
+          <h2 class="step-title">Acompanhamento em Tempo Real</h2>
+          <p class="step-desc">Tudo que você precisa para monitorar e gerenciar a rotina do seu pet, direto na plataforma.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feat-icon"><i class="ph-bold ph-map-pin"></i></div>
+            <h4>Rastreamento ao Vivo</h4>
+            <p>Veja onde seu pet está durante o passeio. Receba notificação quando sair e quando voltar.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feat-icon"><i class="ph-bold ph-camera"></i></div>
+            <h4>Fotos & Vídeos</h4>
+            <p>Receba registros do passeio diretamente no app. Memórias do dia a dia do seu melhor amigo.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feat-icon"><i class="ph-bold ph-notebook"></i></div>
+            <h4>Relatório de Saúde</h4>
+            <p>Distância percorrida, necessidades fisiológicas, humor e comportamento documentados.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feat-icon"><i class="ph-bold ph-star"></i></div>
+            <h4>Avalie seu Passeador</h4>
+            <p>Após cada passeio, deixe sua avaliação e ajude a comunidade Petway a crescer com qualidade.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feat-icon"><i class="ph-bold ph-calendar-blank"></i></div>
+            <h4>Agenda Automática</h4>
+            <p>Nenhuma interação necessária. O sistema gera os passeios semanalmente de forma automática.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feat-icon"><i class="ph-bold ph-chat-circle"></i></div>
+            <h4>Chat com Passeador</h4>
+            <p>Comunicação direta e segura dentro da plataforma. Sem compartilhamento de dados pessoais.</p>
+          </div>
+        </div>
       <h2 class="section-title-center">Perguntas Frequentes</h2>
       <div class="faq-list">
         <div class="faq-item">

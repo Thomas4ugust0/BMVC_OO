@@ -60,7 +60,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; display: block; z-index: 1000}
 a { text-decoration: none; color: inherit; }
 button { cursor: pointer; font-family: inherit; }
 input, select, textarea { font-family: inherit; }
@@ -86,7 +86,7 @@ input, select, textarea { font-family: inherit; }
   background: #F2E4CB;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1001;
   box-shadow: 0 2px 12px rgba(140,90,30,0.13);
   border-bottom: 1px solid rgba(180,130,70,0.18);
 }
@@ -167,11 +167,13 @@ input, select, textarea { font-family: inherit; }
    ========================================================= */
 .hero-content {
   grid-column: 1/-1;
-  width:100%
+  width:100%;
 }
 
 .hero-banner {
-  background: #f0dabc 
+  position: relative;
+  background: #f0dabc;
+  z-index: 1000;
 }
 
 .hero-banner .container {
@@ -179,6 +181,7 @@ input, select, textarea { font-family: inherit; }
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
+  z-index: 1000;
 }
 
 .hero-eyebrow {
@@ -263,7 +266,6 @@ input, select, textarea { font-family: inherit; }
   justify-content: center;
   gap: 0;
 }
-
 .pstep {
   display: flex;
   align-items: center;
@@ -279,35 +281,55 @@ input, select, textarea { font-family: inherit; }
 }
 
 .pstep-num {
-  width: 26px; height: 26px;
+  width: 26px; 
+  height: 26px;
   border-radius: 50%;
   background: rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-size: 12px; 
+  font-weight: 700;
   transition: var(--transition);
 }
 
-.pstep.active { color: var(--primary-light); }
+.pstep.active { 
+  color: var(--primary-light); 
+}
+
 .pstep.active .pstep-num {
   background: var(--primary);
   color: white;
   box-shadow: 0 0 12px rgba(197,153,97,0.5);
 }
 
-.pstep.done { color: var(--success); }
+.pstep.done { 
+  color: var(--success); 
+}
+
 .pstep.done .pstep-num {
   background: var(--success);
   color: white;
 }
-.pstep.done .pstep-num::after { content: '✓'; }
-.pstep.done .pstep-num { font-size: 0; }
-.pstep.done .pstep-num::after { font-size: 13px; }
 
-.pstep-line {
-  width: 40px; height: 1px;
-  background: rgba(255,255,255,0.15);
+.pstep-num i {
+  display: none;
 }
 
+.pstep.done .pstep-num span {
+  display: none;
+}
+
+.pstep.done .pstep-num i {
+  display: inline-block;
+  font-size: 13px;
+}
+
+.pstep-line {
+  width: 40px; 
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+}
 /* =========================================================
    MAIN LAYOUT
    ========================================================= */
@@ -774,12 +796,12 @@ input[type="radio"]:checked + .plan-best {
 }
 
 .plan-card:hover .plan-cta, input[type="radio"]:checked + .plan-card .plan-cta {
-  background: var(--primary);
+  background: #0c0906;
   color: white;
 }
 
 .plan-cta-best {
-  background: var(--primary);
+  background: #0c0906;
   color: white;
 }
 .plan-cta-best:hover { background: var(--primary-dark); }
@@ -850,84 +872,6 @@ input[type="radio"]:checked + .pet-chip {
 .pet-add { border-style: dashed; }
 
 /* =========================================================
-   CHECKOUT BOX
-   ========================================================= */
-.checkout-box {
-  background: var(--card-bg);
-  border: 2px solid var(--border-strong);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  box-shadow: var(--shadow);
-}
-
-.checkout-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.checkout-header h3 {
-  font-family: var(--font-head);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--dark);
-}
-
-.checkout-header span { font-size: 20px; }
-
-.checkout-rows { margin-bottom: 22px; }
-
-.checkout-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-  color: var(--text-muted);
-}
-
-.checkout-row strong { color: var(--dark); font-weight: 600; }
-
-.checkout-total {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--dark);
-  border-top: 2px solid var(--border-strong);
-  border-bottom: none;
-  margin-top: 8px;
-  padding-top: 16px;
-}
-
-.checkout-total strong {
-  font-family: var(--font-head);
-  font-size: 22px;
-  color: var(--primary-dark);
-}
-
-.checkout-note {
-  display: flex;
-  gap: 12px;
-  background: var(--sand);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  margin-bottom: 22px;
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.checkout-note span { font-size: 18px; flex-shrink: 0; }
-
-.checkout-cancel {
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-light);
-  margin-top: 14px;
-}
-
-/* =========================================================
    BUTTONS
    ========================================================= */
 .btn-confirm {
@@ -951,7 +895,7 @@ input[type="radio"]:checked + .pet-chip {
 }
 
 .btn-confirm:hover {
-  background: linear-gradient(135deg, var(--primary-dark), #7a5a28);
+  background-color:rgb(16, 16, 16);
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(197,153,97,0.45);
 }
@@ -970,7 +914,7 @@ input[type="radio"]:checked + .pet-chip {
   transition: var(--transition);
 }
 
-.btn-add-pet:hover { background: var(--primary); color: white; }
+.btn-add-pet:hover { background-color: #0c0906; color: white; border: 1.5px solid white }
 
 .btn-link {
   background: none;
@@ -1173,7 +1117,13 @@ input[type="radio"]:checked + .pet-chip {
 /* =========================================================
    SIDEBAR
    ========================================================= */
-.sidebar { position: relative; }
+.sidebar {
+  position: sticky;
+  top: 220px;
+  transform: translateX(60px);
+  z-index: 1; 
+  margin-bottom: 55px;
+}
 
 .sidebar-sticky {
   position: sticky;
@@ -1184,7 +1134,7 @@ input[type="radio"]:checked + .pet-chip {
 }
 
 .sidebar-card {
-  background: var(--card-bg);
+  background-color: #fff3d8;
   border: 2px solid var(--border-strong);
   border-radius: var(--radius-lg);
   padding: 24px;
@@ -1204,13 +1154,6 @@ input[type="radio"]:checked + .pet-chip {
   font-weight: 700;
   color: var(--dark);
   flex: 1;
-}
-
-.sidebar-live-dot {
-  width: 8px; height: 8px;
-  background: var(--success);
-  border-radius: 50%;
-  animation: pulse-dot 2s ease-in-out infinite;
 }
 
 @keyframes pulse-dot {

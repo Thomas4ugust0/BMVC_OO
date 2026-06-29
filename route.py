@@ -2,7 +2,7 @@ from app.controllers.application import Application
 from peewee import IntegrityError
 from bottle import Bottle, redirect, response, run, request, static_file
 import os
-from app.models.user_account import Usuario
+from app.models.user_account import Usuario, Pet
 from werkzeug.security import generate_password_hash
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -51,7 +51,6 @@ def portal():
     return ctl.render('portal')
 
 @app.route('/passeador')
-@app.route('/passeador/<parametro>')
 def action_passeador(parametro=None):
     if not parametro:
         return ctl.render('passeador')
@@ -59,12 +58,8 @@ def action_passeador(parametro=None):
         return ctl.render('passeador', parametro)
 
 @app.route('/cliente')
-@app.route('/cliente/<parametro>') 
-def action_cliente(parametro=None):
-    if not parametro:
-        return ctl.render('cliente')
-    else:
-        return ctl.render('cliente', parametro)
+def action_cliente():
+    return ctl.render('cliente')
 
 #-----------------------------------------------------------------------------
 # Rotas de Autenticação e Banco de Dados
@@ -95,17 +90,16 @@ def fazer_cadastro():
 
 @app.route('/login', method='POST')
 def fazer_login():
-    # Formulário id="login-form" no HTML
+    #formulário id="login-form" no HTML
     email = request.forms.get('email')
     senha = request.forms.get('senha')
     usuario = Usuario.get_or_none(Usuario.email == email)
     if usuario and usuario.checar_senha(senha):
-        # Criação do cookie de sessão com segurança básica
         response.set_cookie('session_id', str(usuario.id), httponly=True, secure=True, max_age=3600)
         
-        # Roteamento do role
+        #roteamento do role
         if usuario.role == 'owner':
-            return redirect(f'/cliente/{usuario.nome}')
+            return redirect(f'/cliente')
         elif usuario.role == 'walker':
             return redirect(f'/passeador/{usuario.nome}')
     else:
@@ -117,6 +111,41 @@ def logout():
     response.delete_cookie('session_id')
     return redirect('/index')
 
+#-----------------------------------------------------------------------------
+# CRUD - nível 2(BMVC)
+
+#Rotas CREATE
+
+@app.route('/adicionar_pet', method='POST')
+def adicionar_pet():
+    session_id = request.get_cookie('session_id')
+    if not session_id:
+        return redirect('/index')
+        
+    usuario_logado = Usuario.get_or_none(Usuario.id == session_id)
+    
+    nome = request.forms.get('nome')
+    raca = request.forms.get('raca')
+    sexo = request.forms.get('sexo')
+    Pet.create(nome=nome, raca=raca, sexo=sexo, dono=usuario_logado)
+    
+    return redirect('/cliente#cadastrar-pet')
+
+#Rotas DELETE
+
+@app.route('/excluir_pet/<id_pet:int>', method='POST')
+def excluir_pet(id_pet):
+    session_id = request.get_cookie('session_id')
+    if not session_id:
+        return redirect('/index')
+        
+    usuario_logado = Usuario.get_or_none(Usuario.id == session_id)
+    deleta_pet = Pet.get_or_none(Pet.id == id_pet)
+    
+    if deleta_pet and deleta_pet.dono == usuario_logado:
+        deleta_pet.delete_instance() 
+
+    return redirect('/cliente#cadastrar-pet')
 #-----------------------------------------------------------------------------
 
 if __name__ == '__main__':
