@@ -21,7 +21,7 @@
         <a class="nav-link active" href="#agenda"><i class="ph ph-calendar-blank"></i> AGENDA</a>
         <a class="nav-link" href="#dogs"><i class="ph ph-paw-print"></i> PETS</a>
         <a class="nav-link" href="#earnings"><i class="ph ph-currency-dollar"></i> GANHOS</a>
-        <a class="nav-link" href="#achievements"><i class="ph ph-chart-bar"></i> RELATÓRIOS</a>
+        <a class="nav-link" href="#profile"><i class="ph ph-chart-bar"></i> PERFIL</a>
       </nav>
       <div class="header-search">
         <i class="ph ph-magnifying-glass ico"></i>
@@ -56,17 +56,17 @@
 
       <div class="avatar-menu" id="avatarMenu">
         <button class="avatar-trigger" id="avatarTrigger">
-          <span class="avatar-bubble">{{username[:2].upper()}}</span>
+          <span class="avatar-bubble">{{usuario.nome[:2].upper()}}</span>
           <span class="header-user-info">
-            <span class="user-name">{{username}}</span>
+            <span class="user-name">{{usuario.nome}}</span>
             <span class="user-badge">PASSEADOR</span>
           </span>
           <i class="ph-bold ph-caret-down chevron"></i>
         </button>
         <div class="avatar-dropdown">
           <div class="dropdown-head">
-            <span class="avatar-bubble">{{username[:2].upper()}}</span>
-            <div><strong>{{username}}</strong><small>{{email}}</small></div>
+            <span class="avatar-bubble">{{usuario.nome[:2].upper()}}</span>
+            <div><strong>{{usuario.nome}}</strong><small>{{usuario.email}}</small></div>
           </div>
           <button class="dropdown-item" data-toast="Abrindo seu perfil profissional…"><i class="ph ph-user"></i> Meu Perfil</button>
           <button class="dropdown-item" data-toast="Exibindo avaliações dos tutores…"><i class="ph ph-star"></i> Avaliações</button>
@@ -91,10 +91,10 @@
     <div class="main-layout">
       <div class="main-col">
         <div class="summary-row">
-          <div class="summary-card"><div class="sc-icon" style="background:var(--primary-glow);color:var(--primary-dark);"><i class="ph ph-path"></i></div><strong>127 km</strong><span class="sc-label">Distância no mês</span><span class="sc-trend trend-up"><i class="ph-bold ph-trend-up"></i> +12%</span></div>
-          <div class="summary-card"><div class="sc-icon" style="background:var(--primary-glow);color:var(--primary-dark);"><i class="ph ph-clock"></i></div><strong>48 h</strong><span class="sc-label">Horas trabalhadas</span><span class="sc-trend trend-up"><i class="ph-bold ph-trend-up"></i> +6h</span></div>
-          <div class="summary-card"><div class="sc-icon" style="background:var(--primary-glow);color:var(--primary-dark);"><i class="ph ph-users"></i></div><strong>12</strong><span class="sc-label">Tutores ativos</span><span class="sc-trend trend-up"><i class="ph-bold ph-trend-up"></i> +2</span></div>
-          <div class="summary-card"><div class="sc-icon" style="background:var(--primary-glow);color:var(--primary-dark);"><i class="ph ph-medal"></i></div><strong>98%</strong><span class="sc-label">Pontualidade</span><span class="sc-trend trend-down"><i class="ph-bold ph-trend-down"></i> -1%</span></div>
+          <div class="summary-card"><div class="sc-icon" style="background:var(--primary-glow);color:var(--primary-dark);"><i class="ph ph-path"></i></div><strong>127 km <span class="sc-trend trend-up"> +11km</span></strong><span class="sc-label">Distância no mês</span></div>
+          <div class="summary-card"><div class="sc-icon" style="background:var(--primary-glow);color:var(--primary-dark);"><i class="ph ph-clock"></i></div><strong>48 h <span class="sc-trend trend-up"> +6h</span></strong><span class="sc-label">Horas trabalhadas</span></div>
+          <div class="summary-card"><div class="sc-icon" style="background:var(--primary-glow);color:var(--primary-dark);"><i class="ph ph-users"></i></div><strong>5 <span class="sc-trend trend-up"> +2</span></strong><span class="sc-label">Pets ativos</span></div>
+          <div class="summary-card"><div class="sc-icon" style="background:var(--primary-glow);color:var(--primary-dark);"><i class="ph ph-medal"></i></div><strong>98% <span class="sc-trend trend-down"> -1%</span></strong><span class="sc-label">Pontualidade</span></div>
         </div>
 
         <section class="step-section" id="today">
@@ -164,15 +164,15 @@
         </section>
         <section class="step-section" id="profile">
           <div class="step-header">
-            <span class="step-badge">Perfil Profissional</span>
+            <span class="step-badge" id="profile">Perfil Profissional</span>
             <h2 class="step-title">Sobre você</h2>
             <p class="step-desc">Edite seu perfil público, gerencie certificações, áreas de atuação e veja avaliações dos tutores.</p>
           </div>
           <div class="profile-grid">
             <div class="profile-card">
-              <div class="profile-avatar">{{username[0].upper()}}</div>
+              <div class="profile-avatar">{{usuario.nome[0].upper()}}</div>
               <div class="profile-info">
-                <h3>{{username}}</h3>
+                <h3>{{usuario.nome}}</h3>
                 <div class="profile-rating"><i class="ph-fill ph-star"></i><strong>4.9</strong><small>(127 avaliações)</small></div>
                 <div class="profile-location"><i class="ph ph-map-pin"></i> Brasília · DF</div>
                 <div class="profile-badges">
@@ -207,13 +207,12 @@
           <div class="area-block">
             <h4><i class="ph ph-map-pin"></i> Área de atuação</h4>
             <div class="area-chips" id="areaChips">
-              <button class="area-chip active">Asa Sul</button>
-              <button class="area-chip active">Asa Norte</button>
-              <button class="area-chip active">Lago Sul</button>
-              <button class="area-chip active">Lago Norte</button>
-              <button class="area-chip active">Sudoeste</button>
-              <button class="area-chip active">Cruzeiro</button>
-              <button class="area-chip inactive">Noroeste</button>
+              <button class="area-chip inactive">Asa Sul</button>
+              <button class="area-chip inactive">Asa Norte</button>
+              <button class="area-chip inactive">Águas Claras</button>
+              <button class="area-chip inactive">Lago Sul</button>
+              <button class="area-chip inactive">Lago Norte</button>
+              <button class="area-chip inactive">Sudoeste</button>
               <button class="area-chip inactive">Park Way</button>
             </div>
           </div>
@@ -278,20 +277,18 @@
       <div class="footer-links">
         <h5>Plataforma</h5>
         <a href="#">Como Funciona</a>
-        <a href="#">Seja um Passeador</a>
-        <a href="#">Planos e Preços</a>
+        <a href="#">Preços do Serviço</a>
+        <a href="#">Sobre o Plano</a>
       </div>
       <div class="footer-links">
         <h5>Suporte</h5>
         <a href="#">Central de Ajuda</a>
-        <a href="#">Chat ao Vivo</a>
         <a href="#">Política de Cancelamento</a>
         <a href="#">Termos de Uso</a>
       </div>
       <div class="footer-links">
         <h5>Sobre</h5>
         <a href="#">Nossa Missão</a>
-        <a href="#">Segurança</a>
         <a href="#">Blog Petway</a>
         <a href="#">Contato</a>
       </div>

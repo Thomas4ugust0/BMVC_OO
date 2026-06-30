@@ -40,11 +40,13 @@ class Application:
     def index(self) -> str:
         return template('app/views/html/index.html')
 
-    def passeador(self, parameter: Optional[str] = None) -> str:
+    def passeador(self) -> str:
         usuario_logado = self.get_current_user()
-        email_usuario = usuario_logado.email if usuario_logado else "e-mail indisponível"
         
-        return template('app/views/html/passeador.tpl', username=parameter, email=email_usuario)
+        if not usuario_logado:
+            return self.index()
+        
+        return template('app/views/html/passeador.tpl', usuario=usuario_logado)
 
     def portal(self) -> str:
         return template('app/views/html/portal.tpl')

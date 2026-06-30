@@ -17,9 +17,10 @@
   <header class="site-header">
     <div class="header-inner container">
       <nav class="header-nav">
-        <a href="#step-4" class="nav-link">Como Funciona</a>
+        <a href="#funcionalidades" class="nav-link">Como Funciona</a>
         <a href="#step-1" class="nav-link">Passeadores</a>
         <a href="#step-2" class="nav-link">Planos</a>
+        <a href="#step-3" class="nav-link">Agendamento</a>
       </nav>
       <div class="header-user">
         <div class="avatar-bubble">
@@ -123,7 +124,7 @@
           <input type="radio" name="walker" id="w1" value="lucas" class="sr-only" />
           <label class="walker-card" for="w1" onclick="selectWalker('Lucas Ferreira', '4.9', 'lucas')">
             <div class="wc-header">
-              <div class="wc-avatar" style="background: linear-gradient(135deg,#c59961,#a07840);">
+              <div class="wc-avatar" style="background: var(--sand-mid);">
                 <span>LF</span>
               </div>
               <div class="wc-meta">
@@ -133,14 +134,9 @@
                   <strong>4.9</strong>
                   <small>(187 avaliações)</small>
                 </div>
-                <div class="wc-location"><i class="ph ph-map-pin-area"></i> Asa Sul · Plano Piloto</div>
+                <div class="wc-location"><i class="ph ph-map-pin-area"></i> Plano Piloto · Asa Sul</div>
               </div>
-              <div class="wc-check"><span>✓</span></div>
-            </div>
-            <div class="wc-tags">
-              <span class="tag tag-energy">Especialista em Alta Energia</span>
-              <span class="tag">Golden Retriever</span>
-              <span class="tag">Husky</span>
+              <div class="wc-check"><span><i class="ph-bold ph-check"></i></span></div>
             </div>
             <div class="wc-stats">
               <div class="wc-stat">
@@ -162,16 +158,16 @@
             </div>
             <div class="wc-bio">"Transformo rotina em alegria. Cada passeio é tratado com seriedade e muito carinho."</div>
             <div class="wc-footer">
-              <span class="verified-badge"><i class="ph ph-seal-check"></i> Verificado</span>
-              <span class="verified-badge"><i class="ph ph-notepad"></i> Antecedentes OK</span>
-              <span class="verified-badge"><i class="ph ph-dog"></i> Adestrador</span>
+              <span class="tag"><i class="ph ph-seal-check"></i> Verificado</span>
+              <span class="tag"><i class="ph ph-notepad"></i> Antecedentes OK</span>
+              <span class="tag"><i class="ph ph-dog"></i> Adestrador</span>
             </div>
           </label>
           <!-- Walker 2 -->
           <input type="radio" name="walker" id="w2" value="ana" class="sr-only" />
-          <label class="walker-card" for="w2" onclick="selectWalker('Ana Carolina Lima', '5.0', 'ana')">
+          <label class="walker-card" for="w2" onclick="selectWalker('Ana Carolina', '5.0', 'ana')">
             <div class="wc-header">
-              <div class="wc-avatar" style="background: linear-gradient(135deg,#9b6e3a,#c59961);">
+              <div class="wc-avatar" style="background: var(--sand-mid);">
                 <span>AC</span>
               </div>
               <div class="wc-meta">
@@ -181,14 +177,9 @@
                   <strong>5.0</strong>
                   <small>(214 avaliações)</small>
                 </div>
-                <div class="wc-location"><i class="ph ph-map-pin-area"></i> Águas Claras · Sudoeste</div>
+                <div class="wc-location"><i class="ph ph-map-pin-area"></i> Taguatinga · Sul</div>
               </div>
-              <div class="wc-check"><span>✓</span></div>
-            </div>
-            <div class="wc-tags">
-              <span class="tag tag-small">Especialista em Raças Pequenas</span>
-              <span class="tag">Filhotes</span>
-              <span class="tag">Idosos</span>
+              <div class="wc-check"><span><i class="ph-bold ph-check"></i></span></div>
             </div>
             <div class="wc-stats">
               <div class="wc-stat">
@@ -210,17 +201,59 @@
             </div>
             <div class="wc-bio">"Cuido do seu pet como se fosse meu. Fotos e atualizações em tempo real em todos os passeios."</div>
             <div class="wc-footer">
-              <span class="verified-badge"><i class="ph ph-seal-check"></i> Verificada</span>
-              <span class="verified-badge"><i class="ph ph-notepad"></i> Antecedentes OK</span>
-              <span class="verified-badge"><i class="ph ph-graduation-cap"></i> Certificada</span>
+              <span class="tag"><i class="ph ph-seal-check"></i> Verificada</span>
+              <span class="tag"><i class="ph ph-notepad"></i> Antecedentes OK</span>
+              <span class="tag"><i class="ph ph-graduation-cap"></i> Certificada</span>
             </div>
           </label>
 
           <!-- Walker 3 -->
+          <input type="radio" name="walker" id="w3" value="luis" class="sr-only" />
+          <label class="walker-card" for="w3" onclick="selectWalker('Luis Davi', '4.5', 'luis')">
+            <div class="wc-header">
+              <div class="wc-avatar" style="background: var(--sand-mid);">
+                <span>LD</span>
+              </div>
+              <div class="wc-meta">
+                <h3>Luis Davi</h3>
+                <div class="wc-rating">
+                  <span class="stars"><div class="stars-group" data-rating="5"></div></span>
+                  <strong>4.5</strong>
+                  <small>(67 avaliações)</small>
+                </div>
+                <div class="wc-location"><i class="ph ph-map-pin-area"></i> Águas Claras · Norte</div>
+              </div>  
+              <div class="wc-check"><span><i class="ph-bold ph-check"></i></span></div>
+            </div>
+            <div class="wc-stats">
+              <div class="wc-stat">
+                <strong>210</strong>
+                <small>Passeios</small>
+              </div>
+              <div class="wc-stat">
+                <strong>4.5 anos</strong>
+                <small>Experiência</small>
+              </div>
+              <div class="wc-stat">
+                <strong>4</strong>
+                <small>Cães ativos</small>
+              </div>
+              <div class="wc-stat capacity">
+                <strong>3 vagas</strong>
+                <small>Disponíveis</small>
+              </div>
+            </div>
+            <div class="wc-bio">"Especializado em raças de porte médio e grande."</div>
+            <div class="wc-footer">
+              <span class="tag"><i class="ph ph-seal-check"></i> Verificado</span>
+              <span class="tag"><i class="ph ph-notepad"></i>Antecedentes OK</span>
+              <span class="tag"><i class="ph ph-dog"></i> Adestrador</span>
+            </div>
+          </label>
           <input type="radio" name="walker" id="w3" value="rafael" class="sr-only" />
           <label class="walker-card" for="w3" onclick="selectWalker('Rafael Moura', '4.8', 'rafael')">
             <div class="wc-header">
-              <div class="wc-avatar" style="background: linear-gradient(135deg,#5a7a4a,#7aab5e);">
+              <div class="wc-avatar" style="background: var(--sand-mid);">
                 <span>RM</span>
               </div>
               <div class="wc-meta">
@@ -230,14 +263,9 @@
                   <strong>4.8</strong>
                   <small>(122 avaliações)</small>
                 </div>
-                <div class="wc-location"><i class="ph ph-map-pin-area"></i> Asa Norte · Lago Norte</div>
-              </div>
-              <div class="wc-check"><span>✓</span></div>
-            </div>
-            <div class="wc-tags">
-              <span class="tag tag-guard">Raças de Guarda</span>
-              <span class="tag">Border Collie</span>
-              <span class="tag">Pastor Alemão</span>
+                <div class="wc-location"><i class="ph ph-map-pin-area"></i> Plano Piloto · Asa Norte</div>
+              </div>  
+              <div class="wc-check"><span><i class="ph-bold ph-check"></i></span></div>
             </div>
             <div class="wc-stats">
               <div class="wc-stat">
@@ -259,9 +287,9 @@
             </div>
             <div class="wc-bio">"Especializado em raças inteligentes e de trabalho. Passeios estruturados com foco em obediência."</div>
             <div class="wc-footer">
-              <span class="verified-badge"><i class="ph ph-seal-check"></i> Verificado</span>
-              <span class="verified-badge"><i class="ph ph-notepad"></i>Antecedentes OK</span>
-              <span class="verified-badge"><i class="ph ph-dog"></i> Adestrador</span>
+              <span class="tag"><i class="ph ph-seal-check"></i> Verificado</span>
+              <span class="tag"><i class="ph ph-notepad"></i>Antecedentes OK</span>
+              <span class="tag"><i class="ph ph-dog"></i> Adestrador</span>
             </div>
           </label>
 
@@ -400,7 +428,7 @@
             <p class="field-hint">Seu passeador chegará neste endereço nos dias contratados.</p>
           </div>
 
-          <div class="schedule-block">
+          <div id="cadastrar-pet" class="schedule-block">
             <h4><i class="ph-bold ph-note"></i> Observações Especiais</h4>
             <textarea class="textarea-elegant" rows="3" placeholder="Informe características especiais do seu pet: reatividade, medos, alimentação durante o passeio..."></textarea>
           </div>
@@ -408,49 +436,9 @@
       
 
       <!-- ===== STEP 4: POST-SUBSCRIPTION FEATURES ===== -->
-      <section class="step-section" id="step-4">
-
-
-        <!-- Activity Timeline mockup -->
-        <div class="activity-section">
-          <h3 class="activity-title">Histórico Recente</h3>
-          <div id="cadastrar-pet"  class="timeline">
-            <div class="timeline-item completed">
-              <div class="tl-dot"></div>
-              <div class="tl-content">
-                <div class="tl-header">
-                  <span class="tl-label completed-label"><i class="ph-bold ph-check"></i> Concluído</span>
-                  <span class="tl-date">Hoje, 07:30</span>
-                </div>
-                <p class="tl-desc">Passeio com <strong>Lucas Ferreira</strong> · 45 min · 3,2 km · Parque Olhos D'Água</p>
-                <div class="tl-rating"><div class="stars-group" data-rating="5"></div> <small>Você avaliou: Excelente!</small></div>
-              </div>
-            </div>
-            <div class="timeline-item upcoming">
-              <div class="tl-dot"></div>
-              <div class="tl-content">
-                <div class="tl-header">
-                  <span class="tl-label upcoming-label"><i class="ph-bold ph-calendar-blank"></i> Agendado</span>
-                  <span class="tl-date">Amanhã, 07:30</span>
-                </div>
-                <p class="tl-desc">Passeio com <strong>Lucas Ferreira</strong> · Plano Alta Energia · Rota habitual</p>
-              </div>
-            </div>
-            <div class="timeline-item upcoming">
-              <div class="tl-dot"></div>
-              <div class="tl-content">
-                <div class="tl-header">
-                  <span class="tl-label upcoming-label"><i class="ph-bold ph-calendar-blank"></i> Agendado</span>
-                  <span class="tl-date">Qua, 07:30</span>
-                </div>
-                <p class="tl-desc">Passeio com <strong>Lucas Ferreira</strong> · Plano Alta Energia · Rota habitual</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <section class="step-section">
         <!-- Dog Profiles -->
-<div class="dogs-section">
+        <div class="dogs-section">
           <div class="dogs-header">
             <h3>Meus Pets</h3>
             <button class="btn-add-pet" onclick="document.getElementById('form-novo-pet').style.display='block'">+ Adicionar Pet</button>
@@ -575,15 +563,13 @@
             Confirmar Assinatura →
           </button>
         </div>
-
   </main>
-  <section class="faq-section">
+  <section class="faq-section"  id="funcionalidades"></section>
     <div class="container faq-inner">
       <div class="step-header">
           <h2 class="step-title">Acompanhamento em Tempo Real</h2>
           <p class="step-desc">Tudo que você precisa para monitorar e gerenciar a rotina do seu pet, direto na plataforma.</p>
         </div>
-
         <div class="features-grid">
           <div class="feature-card">
             <div class="feat-icon"><i class="ph-bold ph-map-pin"></i></div>
@@ -667,20 +653,18 @@
       <div class="footer-links">
         <h5>Plataforma</h5>
         <a href="#">Como Funciona</a>
-        <a href="#">Seja um Passeador</a>
-        <a href="#">Planos e Preços</a>
+        <a href="#">Preços do Serviço</a>
+        <a href="#">Sobre o Plano</a>
       </div>
       <div class="footer-links">
         <h5>Suporte</h5>
         <a href="#">Central de Ajuda</a>
-        <a href="#">Chat ao Vivo</a>
         <a href="#">Política de Cancelamento</a>
         <a href="#">Termos de Uso</a>
       </div>
       <div class="footer-links">
         <h5>Sobre</h5>
         <a href="#">Nossa Missão</a>
-        <a href="#">Segurança</a>
         <a href="#">Blog Petway</a>
         <a href="#">Contato</a>
       </div>

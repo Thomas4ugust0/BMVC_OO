@@ -259,16 +259,18 @@ function setupDropdowns() {
   });
 }
 
-function setupAreaChips() {
-  $('#areaChips').addEventListener('click', e => {
-    const chip = e.target.closest('.area-chip');
-    if (!chip) return;
-    const wasActive = chip.classList.contains('active');
-    chip.classList.toggle('active');
-    chip.classList.toggle('inactive');
-    toast(`${chip.textContent.trim()} ${wasActive ? 'removida da' : 'adicionada à'} sua área de atuação.`);
+const botoes = document.querySelectorAll('#areaChips .area-chip');
+
+botoes.forEach(botao => {
+  botao.addEventListener('click', () => {
+    botoes.forEach(b => {
+      b.classList.remove('active');
+      b.classList.add('inactive');
+    });
+    botao.classList.remove('inactive');
+    botao.classList.add('active');
   });
-}
+});
 
 function setupWeekNav() {
   $$('.week-btn').forEach(btn => {

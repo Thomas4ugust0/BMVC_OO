@@ -51,11 +51,8 @@ def portal():
     return ctl.render('portal')
 
 @app.route('/passeador')
-def action_passeador(parametro=None):
-    if not parametro:
-        return ctl.render('passeador')
-    else:
-        return ctl.render('passeador', parametro)
+def action_passeador():
+    return ctl.render('passeador')
 
 @app.route('/cliente')
 def action_cliente():
@@ -101,7 +98,7 @@ def fazer_login():
         if usuario.role == 'owner':
             return redirect(f'/cliente')
         elif usuario.role == 'walker':
-            return redirect(f'/passeador/{usuario.nome}')
+            return redirect(f'/passeador')
     else:
         return "E-mail ou senha incorretos. Tente novamente."
 
